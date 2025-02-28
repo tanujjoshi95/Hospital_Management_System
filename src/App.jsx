@@ -1,14 +1,12 @@
 import "react";
 import "./App.css";
-import Login from "./pages/Login";
+import LoginPage from "./pages/LoginPage";
+import { useState } from "react";
 
 function App() {
-  return (
-    <>
-      <h1>code setup sucessfully.</h1>
-      <Login />
-    </>
-  );
+  const [page, setPage] = useState("Login");
+
+  return <>{page === "Login" && <LoginPage setPage={setPage} />}</>;
 }
 
 export default App;
