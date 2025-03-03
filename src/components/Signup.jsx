@@ -2,6 +2,10 @@ import "react";
 import PropTypes from "prop-types";
 
 const Signup = ({ switchToLogin }) => {
+  const handleSignup = (e) => {
+    e.preventDefault();
+    console.log("Signup sucessfull.");
+  };
   return (
     <div>
       <form className="mt-6">
@@ -32,6 +36,7 @@ const Signup = ({ switchToLogin }) => {
         <button
           type="submit"
           className="w-full px-4 py-2 mt-6 font-semibold text-white bg-green-500 rounded-lg hover:bg-green-600"
+          onClick={handleSignup}
         >
           Sign Up
         </button>
@@ -51,5 +56,5 @@ const Signup = ({ switchToLogin }) => {
 
 export default Signup;
 Signup.propTypes = {
-  switchToLogin: PropTypes.func.isRequired,
+  switchToLogin: PropTypes.func,
 };

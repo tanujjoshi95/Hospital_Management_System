@@ -30,5 +30,5 @@ const LoginPage = () => {
 
 export default LoginPage;
 LoginPage.propTypes = {
-  setPage: PropTypes.func.isRequired,
+  setPage: PropTypes.func,
 };
