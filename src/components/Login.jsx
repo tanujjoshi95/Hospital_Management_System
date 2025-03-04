@@ -1,7 +1,27 @@
 import "react";
 import PropTypes from "prop-types";
+import { userAuth } from "../database/server";
+import { useContext, useState } from "react";
+import { UserContext } from "../contexts/UserContext";
 
 const Login = ({ switchToSignup }) => {
+  const [userEmail, setUserEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { setUserID, setPage } = useContext(UserContext);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log("Login sucessfull.");
+    const result = userAuth(userEmail, password);
+    if (result.response) {
+      setUserID(result);
+      setPage("Home");
+    } else {
+      // console.log("Invalid email or password");
+      alert("Invalid email or password");
+    }
+  };
   return (
     <div>
       <div>
@@ -12,6 +32,7 @@ const Login = ({ switchToSignup }) => {
               type="email"
               className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter your email"
+              onChange={(e) => setUserEmail(e.target.value)}
             />
           </div>
           <div className="mt-4">
@@ -20,6 +41,7 @@ const Login = ({ switchToSignup }) => {
               type="password"
               className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter your password"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="flex items-center justify-between mt-4">
@@ -34,6 +56,7 @@ const Login = ({ switchToSignup }) => {
           <button
             type="submit"
             className="w-full px-4 py-2 mt-6 font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600"
+            onClick={handleLogin}
           >
             Login
           </button>
@@ -54,5 +77,5 @@ const Login = ({ switchToSignup }) => {
 
 export default Login;
 Login.propTypes = {
-  switchToSignup: PropTypes.func.isRequired,
+  switchToSignup: PropTypes.func,
 };
