@@ -33,6 +33,7 @@ const Login = ({ switchToSignup }) => {
               className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter your email"
               onChange={(e) => setUserEmail(e.target.value)}
+              autoComplete="email"
             />
           </div>
           <div className="mt-4">
@@ -42,6 +43,7 @@ const Login = ({ switchToSignup }) => {
               className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter your password"
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="password"
             />
           </div>
           <div className="flex items-center justify-between mt-4">

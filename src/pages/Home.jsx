@@ -1,9 +1,11 @@
 import "react";
+import "../styles/navBar.css";
+import Sidebar from "../components/sideBar";
 
 const Home = () => {
   return (
     <div>
-      <h1>Home Page</h1>
+      <Sidebar />
     </div>
   );
 };
