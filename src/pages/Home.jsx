@@ -1,11 +1,15 @@
 import "react";
 import "../styles/navBar.css";
-import Sidebar from "../components/sideBar";
+import Sidebar from "../components/Sidebar";
+import Navbar from "../components/NavBar";
+import { useState } from "react";
 
 const Home = () => {
+  const [pagevalue, setPageValue] = useState("Dashboard");
   return (
     <div>
-      <Sidebar />
+      <Navbar pagevalue={pagevalue} />
+      <Sidebar pagevalue={pagevalue} setPageValue={setPageValue} />
     </div>
   );
 };
