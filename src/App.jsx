@@ -11,7 +11,7 @@ function App() {
 
   return (
     <UserContext.Provider value={{ setUserID, setPage, userId }}>
-      {page === "Login" && <LoginPage setPage={setPage} />}
+      {page === "Login" && <LoginPage />}
       {page === "Home" && <Home />}
     </UserContext.Provider>
   );
