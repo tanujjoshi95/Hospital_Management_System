@@ -1,1 +1,37 @@
 @import "tailwindcss";
+
+/* Dark Theme *//* bg-gray-900 */
+/* [data-theme='black'] {
+    --tw-bg-opacity: 1;
+    background-color: rgb(17 24 39 / var(--tw-bg-opacity)); 
+    color: white;
+  } */
+  
+  /* Forest Theme *//* bg-emerald-800 */
+  /* [data-theme='forest'] {
+    --tw-bg-opacity: 1;
+    background-color: rgb(16 185 129 / var(--tw-bg-opacity)); 
+    color: white;
+  } */
+
+  
+@custom-variant light (&:where([data-theme="light"] *));
+@custom-variant dark (&:where([data-theme="dark"] *));
+
+*{
+  @apply select-text;
+}
+
+/* @layer utilities {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+} */
+
+  /* ::-webkit-scrollbar-thumb {
+    background-color: #4f46e5; 
+  } */
+
+  /* ::-webkit-scrollbar-track {
+    background-color: #e5e7eb; 
+  } */

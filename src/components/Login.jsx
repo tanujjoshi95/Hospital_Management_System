@@ -1,22 +1,26 @@
 import "react";
 import PropTypes from "prop-types";
 import { userAuth } from "../database/server";
-import { useContext, useState } from "react";
-import { UserContext } from "../contexts/UserContext";
+import { useState } from "react";
+import { useUserContext } from "../contexts/UserContext";
+import { Link, useOutletContext } from "react-router-dom";
 
-const Login = ({ switchToSignup }) => {
+const Login = () => {
   const [userEmail, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { setUserID, setPage } = useContext(UserContext);
+  const { setUserID, setUserRole } = useUserContext();
+
+  const { handleSuccessfullLoginSignup } = useOutletContext();
 
   const handleLogin = (e) => {
     e.preventDefault();
     console.log("Login sucessfull.");
     const result = userAuth(userEmail, password);
     if (result.response) {
-      setUserID(result);
-      setPage("Home");
+      setUserID(result.id);
+      setUserRole(result.role);
+      handleSuccessfullLoginSignup();
     } else {
       // console.log("Invalid email or password");
       alert("Invalid email or password");
@@ -65,12 +69,9 @@ const Login = ({ switchToSignup }) => {
         </form>
         <p className="mt-4 text-center text-gray-600">
           Don&apos;t have an account?{" "}
-          <button
-            onClick={switchToSignup}
-            className="text-blue-500 hover:underline"
-          >
+          <Link to="/register" className="text-blue-500 hover:underline">
             Sign up
-          </button>
+          </Link>
         </p>
       </div>
     </div>
@@ -80,4 +81,5 @@ const Login = ({ switchToSignup }) => {
 export default Login;
 Login.propTypes = {
   switchToSignup: PropTypes.func,
+  handleSuccessfullLoginSignup: PropTypes.func,
 };

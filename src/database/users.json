@@ -2,6 +2,14 @@
     {
         "username":"gagan",
         "password":"test",
-        "id":"0001"
+        "id":"0001",
+        "admin":true,
+        "role":"admin"
+    },
+    {
+        "username":"arhan",
+        "password":"1234",
+        "id":"0002",
+        "role":"user"
     }
 ]

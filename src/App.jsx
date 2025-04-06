@@ -1,19 +1,57 @@
 import "react";
 import "./App.css";
-import LoginPage from "./pages/LoginPage";
-import { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
-import { UserContext } from "./contexts/UserContext";
+import { UserContextProvider } from "./contexts/UserContext";
+import ProtectedRoute from "./protectedRoute";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminLayout from "./Layout/AdminLayout";
+import AdminUsers from "./pages/AdminUsers";
+import Signup from "./components/Signup";
+import Login from "./components/Login";
+import LoginLayout from "./Layout/LoginLayout";
+import UserLayout from "./Layout/UserLayout";
+import ProfileSection from "./sections/ProfileSection";
+import UserDashboard from "./pages/UserDashboard";
+import BookAppointment from "./components/BookAppointment";
+import MedicalHistory from "./components/MedicalHistory";
+import StaffList from "./components/StaffList";
 
 function App() {
-  const [page, setPage] = useState("Login");
-  const [userId, setUserID] = useState("");
-
   return (
-    <UserContext.Provider value={{ setUserID, setPage, userId }}>
-      {page === "Login" && <LoginPage setPage={setPage} />}
-      {page === "Home" && <Home />}
-    </UserContext.Provider>
+    <UserContextProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* Redirect root to /login */}
+          <Route path="/" element={<Navigate to="/home" replace />} />
+
+          {/* Home route */}
+          <Route path="/home" element={<Home />} />
+
+          {/* Authentication routes under LoginPage layout */}
+          <Route path="/" element={<LoginLayout />}>
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Signup />} />
+          </Route>
+          <Route path="/user" element={<UserLayout />}>
+            <Route path="home" element={<Home />} />
+            <Route path="book-appointment" element={<BookAppointment />} />
+            <Route path="medical-history" element={<MedicalHistory />} />
+            <Route path="dashboard" element={<UserDashboard />} />
+            <Route path="staff-list" element={<StaffList />} />
+            <Route path="profile" element={<ProfileSection />} />
+          </Route>
+          <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route path="dashboard" element={<AdminDashboard />} />
+              <Route path="users" element={<AdminUsers />} />
+              <Route path="profile" element={<ProfileSection />} />
+              <Route path="staff-list" element={<StaffList />} />
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </UserContextProvider>
   );
 }
 

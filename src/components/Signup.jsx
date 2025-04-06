@@ -1,7 +1,6 @@
-import "react";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-const Signup = ({ switchToLogin }) => {
+const Signup = () => {
   const handleSignup = (e) => {
     e.preventDefault();
     console.log("Signup sucessfull.");
@@ -43,18 +42,12 @@ const Signup = ({ switchToLogin }) => {
       </form>
       <p className="mt-4 text-center text-gray-600">
         Already have an account?{" "}
-        <button
-          onClick={switchToLogin}
-          className="text-blue-500 hover:underline"
-        >
+        <Link to="/login" className="text-blue-500 hover:underline">
           Login
-        </button>
+        </Link>
       </p>
     </div>
   );
 };
 
 export default Signup;
-Signup.propTypes = {
-  switchToLogin: PropTypes.func,
-};
