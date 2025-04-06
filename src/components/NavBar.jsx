@@ -6,6 +6,7 @@ import { IoSettings } from "react-icons/io5";
 import { MdHelpOutline } from "react-icons/md";
 import { useTheme } from "../contexts/ThemeContext";
 import { TiFlag } from "react-icons/ti";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ isOpen, setIsOpen, pagevalue }) => {
   const { theme, handleSwitchTheme } = useTheme();
@@ -16,12 +17,15 @@ const Navbar = ({ isOpen, setIsOpen, pagevalue }) => {
     >
       {/* Left Section */}
       <div className="flex items-center justify-between">
-        <div className={`flex items-center ${isOpen ? "w-fit" : "w-10"}`}>
+        <Link
+          to={"/"}
+          className={`flex items-center ${isOpen ? "w-fit" : "w-10"}`}
+        >
           <img src={WebSite_Logo} alt="Logo" className="w-10 h-10 mr-2" />
           {isOpen && (
             <span className="text-xl font-bold">Terminal Hospital</span>
           )}
-        </div>
+        </Link>
         <button
           onClick={() => setIsOpen((data) => !data)}
           className="text-gray-500 p-2"
@@ -66,14 +70,14 @@ const Navbar = ({ isOpen, setIsOpen, pagevalue }) => {
           </span>{" "}
           <span>1/4</span>
         </div>
-        <div className="flex items-center">
+        <Link to={"profile"} className="flex items-center cursor-pointer">
           <img
-            src="src\assets\doctor.png"
+            src="/images/doctor.png"
             alt="Profile"
             className="h-8 w-8 rounded-full mr-2"
           />
           <span>Dr. Gagan Sharma</span>
-        </div>
+        </Link>
       </div>
     </nav>
   );
@@ -84,4 +88,5 @@ Navbar.propTypes = {
   pagevalue: PropTypes.string,
   isOpen: PropTypes.bool,
   setIsOpen: PropTypes.func,
+  setPageValue: PropTypes.func,
 };

@@ -1,20 +1,22 @@
 import "react";
 import {
-  // FaClinicMedical,
-  FaChartBar,
-  FaShoppingCart,
+  // FaChartBar,
+  // FaShoppingCart,
+  // FaWallet,
+  // FaBox,
+  // FaHeadset,
+  FaClinicMedical,
   FaUserMd,
   FaUsers,
-  FaWallet,
-  FaBox,
-  FaHeadset,
 } from "react-icons/fa";
-import { IoMdSettings } from "react-icons/io";
-import { MdDashboard, MdOutlinePayments } from "react-icons/md";
+// import { IoMdSettings } from "react-icons/io";
+// import { MdOutlinePayments } from "react-icons/md";
+import { MdDashboard } from "react-icons/md";
 import { BsCalendarCheck, BsFillFileEarmarkMedicalFill } from "react-icons/bs";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-const Sidebar = ({ isOpen, setPageValue }) => {
+const Sidebar = ({ isOpen }) => {
   return (
     <div
       className={`${
@@ -23,7 +25,7 @@ const Sidebar = ({ isOpen, setPageValue }) => {
       dark:bg-gray-800 dark:text-white `}
     >
       {/* Clinic Info */}
-      {/* {isOpen && (
+      {isOpen && (
         <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded-md flex items-center">
           <FaClinicMedical className="text-blue-500" />
           <div className="ml-2">
@@ -31,7 +33,7 @@ const Sidebar = ({ isOpen, setPageValue }) => {
             <p className="text-xs text-gray-500">Ramnagar Road, Kashipur</p>
           </div>
         </div>
-      )} */}
+      )}
 
       <div className="overflow-auto">
         {/* Navigation Links */}
@@ -42,101 +44,49 @@ const Sidebar = ({ isOpen, setPageValue }) => {
           <NavItem
             Icon={MdDashboard}
             text="Dashboard"
-            setPageValue={setPageValue}
+            link={"dashboard"}
             isOpen={isOpen}
           />
           <NavItem
             Icon={BsCalendarCheck}
             text="Reservations"
-            setPageValue={setPageValue}
+            link={"dashboard"}
             isOpen={isOpen}
           />
           <NavItem
             Icon={FaUsers}
             text="Patients"
-            setPageValue={setPageValue}
+            link={"dashboard"}
             isOpen={isOpen}
           />
           <NavItem
-            setPageValue={setPageValue}
             Icon={BsFillFileEarmarkMedicalFill}
             text="Treatments"
+            link={"dashboard"}
             isOpen={isOpen}
           />
           <NavItem
-            setPageValue={setPageValue}
             Icon={FaUserMd}
             text="Staff List"
-            isOpen={isOpen}
-          />
-          <p className="text-gray-400 text-sm mt-4 mb-2">
-            {isOpen ? "FINANCE" : ""}&nbsp;{" "}
-          </p>
-          <NavItem
-            setPageValue={setPageValue}
-            Icon={FaWallet}
-            text="Accounts"
-            isOpen={isOpen}
-          />
-          <NavItem
-            setPageValue={setPageValue}
-            Icon={FaChartBar}
-            text="Sales"
-            isOpen={isOpen}
-          />
-          <NavItem
-            setPageValue={setPageValue}
-            Icon={FaShoppingCart}
-            text="Purchases"
-            isOpen={isOpen}
-          />
-          <NavItem
-            setPageValue={setPageValue}
-            Icon={MdOutlinePayments}
-            text="Payment Method"
-            isOpen={isOpen}
-          />
-          <p className="text-gray-400 text-sm mt-4 mb-2">
-            {isOpen ? "PHYSICAL ASSET" : ""}&nbsp;
-          </p>{" "}
-          <NavItem
-            setPageValue={setPageValue}
-            Icon={FaBox}
-            text="Stocks"
-            isOpen={isOpen}
-          />
-          <NavItem
-            setPageValue={setPageValue}
-            Icon={IoMdSettings}
-            text="Peripherals"
-            isOpen={isOpen}
-          />
-          <p className="text-gray-400 text-sm mt-4 mb-2">
-            {isOpen ? "SUPPORT" : ""}&nbsp;
-          </p>
-          <NavItem
-            setPageValue={setPageValue}
-            Icon={FaHeadset}
-            text="Customer Support"
+            link={"staff-list"}
             isOpen={isOpen}
           />
         </nav>
       </div>
+      <Link to={"/home"}>Logout</Link>
     </div>
   );
 };
 
-const NavItem = ({ Icon, text, isOpen, setPageValue }) => {
+const NavItem = ({ Icon, text, isOpen, link }) => {
   return (
-    <div
+    <Link
+      to={link}
       className="flex items-center p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md cursor-pointer"
-      onClick={() => {
-        setPageValue(text);
-      }}
     >
       <Icon className="text-blue-500 text-lg" />
       {isOpen && <span className="ml-3 text-sm font-medium">{text}</span>}
-    </div>
+    </Link>
   );
 };
 
@@ -144,7 +94,7 @@ NavItem.propTypes = {
   Icon: PropTypes.elementType.isRequired,
   text: PropTypes.string.isRequired,
   isOpen: PropTypes.bool.isRequired,
-  setPageValue: PropTypes.func.isRequired,
+  link: PropTypes.string.isRequired,
 };
 
 export default Sidebar;
