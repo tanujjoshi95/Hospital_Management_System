@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 /* Dark Theme *//* bg-gray-900 */
 /* [data-theme='black'] {
     --tw-bg-opacity: 1;
@@ -35,3 +36,21 @@
   /* ::-webkit-scrollbar-track {
     background-color: #e5e7eb; 
   } */
+
+  /* index.css or your custom CSS file */
+.my-widget {
+  padding: 10px;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  font-family: sans-serif;
+}
+
+.btn {
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  margin-bottom: 10px;
+}

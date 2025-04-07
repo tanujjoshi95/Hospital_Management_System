@@ -16,6 +16,8 @@ import UserDashboard from "./pages/UserDashboard";
 import BookAppointment from "./components/BookAppointment";
 import MedicalHistory from "./components/MedicalHistory";
 import StaffList from "./components/StaffList";
+import AppointmentsList from "./components/AppointmentsList";
+// import DockPanelComponent from "./testing/DockPanel";
 
 function App() {
   return (
@@ -23,10 +25,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* Redirect root to /login */}
-          <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="/*" element={<Navigate to="/user/home" replace />} />
 
           {/* Home route */}
-          <Route path="/home" element={<Home />} />
+          {/* <Route path="/home" element={<Home />} /> */}
+
+          {/* <Route path="/test" element={<DockPanelComponent />} /> */}
 
           {/* Authentication routes under LoginPage layout */}
           <Route path="/" element={<LoginLayout />}>
@@ -37,6 +41,7 @@ function App() {
             <Route path="home" element={<Home />} />
             <Route path="book-appointment" element={<BookAppointment />} />
             <Route path="medical-history" element={<MedicalHistory />} />
+            <Route path="appointments" element={<AppointmentsList />} />
             <Route path="dashboard" element={<UserDashboard />} />
             <Route path="staff-list" element={<StaffList />} />
             <Route path="profile" element={<ProfileSection />} />

@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@lumino/domutils": "^2.0.3",
+    "@lumino/messaging": "^2.0.3",
+    "@lumino/widgets": "^2.7.0",
     "@tailwindcss/postcss": "^4.0.9",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.487.0",

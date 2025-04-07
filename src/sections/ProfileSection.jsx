@@ -14,7 +14,7 @@ import StaffList from "../components/StaffList";
 
 // import AppointmentDetails from "../components/AppointmentDetails";
 
-const ProfileSection = ({ openCreateAppointementForm }) => {
+const ProfileSection = () => {
   const [selectedOption, setSelectedOption] = useState("Records");
 
   const appointments = [
@@ -59,12 +59,12 @@ const ProfileSection = ({ openCreateAppointementForm }) => {
             </ul>
           </div>
         </div>
-        <button
+        {/* <button
           className="apointment-button"
           onClick={openCreateAppointementForm}
         >
           Create Appointment
-        </button>
+        </button> */}
       </div>
       {/* <hr /> */}
       {/* <div className="profile-options">
