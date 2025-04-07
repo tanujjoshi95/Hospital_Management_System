@@ -3,8 +3,12 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 const LoginLayout = () => {
   const navigate = useNavigate();
-  function handleSuccessfullLoginSignup() {
-    navigate("/admin/dashboard");
+  function handleSuccessfullLoginSignup(userRole) {
+    if (userRole === "admin") {
+      navigate("/admin/dashboard");
+    } else {
+      navigate("/user/dashboard");
+    }
   }
 
   return (

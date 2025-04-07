@@ -1,6 +1,8 @@
 import { UserCircle, Calendar, FileText, Bell } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const UserDashboard = () => {
+  const navigate = useNavigate();
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold text-gray-900 mb-8">
@@ -9,7 +11,10 @@ const UserDashboard = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Quick Actions */}
-        <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+        <div
+          className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow"
+          onClick={() => navigate("/user/appointments")}
+        >
           <Calendar className="w-8 h-8 text-blue-600 mb-4" />
           <h2 className="text-xl font-semibold text-gray-800 mb-2">
             Appointments
@@ -19,7 +24,10 @@ const UserDashboard = () => {
           </p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+        <div
+          className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow"
+          onClick={() => navigate("/user/medical-history")}
+        >
           <FileText className="w-8 h-8 text-green-600 mb-4" />
           <h2 className="text-xl font-semibold text-gray-800 mb-2">
             Medical Records
@@ -35,7 +43,10 @@ const UserDashboard = () => {
           <p className="text-gray-600">Stay updated with important alerts</p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+        <div
+          className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow"
+          onClick={() => navigate("/user/profile")}
+        >
           <UserCircle className="w-8 h-8 text-orange-600 mb-4" />
           <h2 className="text-xl font-semibold text-gray-800 mb-2">Profile</h2>
           <p className="text-gray-600">Update your personal information</p>

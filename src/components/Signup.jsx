@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 const Signup = () => {
+  const { handleSuccessfullLoginSignup } = useOutletContext();
   const handleSignup = (e) => {
     e.preventDefault();
     console.log("Signup sucessfull.");
+    handleSuccessfullLoginSignup("user");
   };
   return (
     <div>
@@ -14,6 +16,7 @@ const Signup = () => {
             type="text"
             className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="Enter your full name"
+            autoComplete="name"
           />
         </div>
         <div className="mt-4">
@@ -22,6 +25,7 @@ const Signup = () => {
             type="email"
             className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="Enter your email"
+            autoComplete="email"
           />
         </div>
         <div className="mt-4">
@@ -30,6 +34,7 @@ const Signup = () => {
             type="password"
             className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="Enter your password"
+            autoComplete="current-password"
           />
         </div>
         <button

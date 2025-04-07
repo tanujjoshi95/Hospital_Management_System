@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import WebSite_Logo from "../assets/medical-logo-vector.jpg";
+import WebSite_Logo from "/medical-logo-vector.jpg";
 import { FaMoon } from "react-icons/fa";
 import { IoSunny } from "react-icons/io5";
 import { IoSettings } from "react-icons/io5";

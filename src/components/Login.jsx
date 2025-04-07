@@ -15,12 +15,12 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Login sucessfull.");
     const result = userAuth(userEmail, password);
+    console.log("Login sucessfull. result: ", result);
     if (result.response) {
-      setUserID(result.id);
+      setUserID(result);
       setUserRole(result.role);
-      handleSuccessfullLoginSignup();
+      handleSuccessfullLoginSignup(result.role);
     } else {
       // console.log("Invalid email or password");
       alert("Invalid email or password");
