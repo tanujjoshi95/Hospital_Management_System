@@ -4,20 +4,22 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import { UserContextProvider } from "./contexts/UserContext";
 import ProtectedRoute from "./protectedRoute";
-import AdminDashboard from "./pages/AdminDashboard";
 import AdminLayout from "./Layout/AdminLayout";
-import AdminUsers from "./pages/AdminUsers";
-import Signup from "./components/Signup";
+import Signup from "./components/patient/Signup";
 import Login from "./components/Login";
 import LoginLayout from "./Layout/LoginLayout";
 import UserLayout from "./Layout/UserLayout";
-import ProfileSection from "./sections/ProfileSection";
-import UserDashboard from "./pages/UserDashboard";
-import BookAppointment from "./components/BookAppointment";
+import UserDashboard from "./components/patient/UserDashboard";
+import BookAppointment from "./components/appointment/BookAppointment";
 import MedicalHistory from "./components/MedicalHistory";
-import StaffList from "./components/StaffList";
-import AppointmentsList from "./components/AppointmentsList";
-// import DockPanelComponent from "./testing/DockPanel";
+import StaffList from "./components/staff/StaffList";
+import AppointmentsList from "./components/appointment/AppointmentsList";
+import StaffProfile from "./components/staff/StaffProfile";
+import Dashboard from "./components/Dashboard/Dashboard";
+import PatientProfile from "./components/patient/PatientProfile";
+import PatientList from "./components/patient/PatientList";
+import DiagnosisLoader from "./components/diagnosis/DiagnosisLoader";
+import MedicalRecords from "./components/medicalRecords/MedicalRecords";
 
 function App() {
   return (
@@ -29,9 +31,8 @@ function App() {
           <Route path="/" element={<Navigate to="/user/home" replace />} />
 
           {/* Home route */}
-          {/* <Route path="/home" element={<Home />} /> */}
-
-          {/* <Route path="/test" element={<DockPanelComponent />} /> */}
+          <Route path="/home" element={<Home />} />
+          <Route path="/test" element={<StaffProfile />} />
 
           {/* Authentication routes under LoginPage layout */}
           <Route path="/" element={<LoginLayout />}>
@@ -45,15 +46,21 @@ function App() {
             <Route path="appointments" element={<AppointmentsList />} />
             <Route path="dashboard" element={<UserDashboard />} />
             <Route path="staff-list" element={<StaffList />} />
-            <Route path="profile" element={<ProfileSection />} />
+            <Route path="profile" element={<PatientProfile />} />
           </Route>
           <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
             <Route path="/admin" element={<AdminLayout />}>
-              <Route path="dashboard" element={<AdminDashboard />} />
-              <Route path="users" element={<AdminUsers />} />
-              <Route path="profile" element={<ProfileSection />} />
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="profile" element={<StaffProfile />} />
               <Route path="staff-list" element={<StaffList />} />
+              <Route path="patient-list" element={<PatientList />} />
+              <Route path="medical-records" element={<MedicalRecords />} />
+              <Route path="appointments-list" element={<AppointmentsList />} />
             </Route>
+            <Route
+              path="/appointment/:id/diagnosis"
+              element={<DiagnosisLoader />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>

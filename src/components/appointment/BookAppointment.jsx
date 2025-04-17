@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { Calendar, Clock, User, Stethoscope } from "lucide-react";
+import { addAppointement } from "../../database/mockAppointement";
 
-const BookAppointment = () => {
+import PropTypes from "prop-types";
+
+const BookAppointment = ({ onCLose }) => {
+  BookAppointment.propTypes = {
+    onCLose: PropTypes.func.isRequired,
+  };
   const [formData, setFormData] = useState({
     department: "",
     doctor: "",
@@ -28,9 +34,21 @@ const BookAppointment = () => {
     Neurology: ["Dr. William Davis", "Dr. Rachel Miller"],
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Appointment booking:", formData);
+    const result = await addAppointement(formData);
+    if (result) {
+      alert("Appointment booked successfully!");
+      setFormData({
+        department: "",
+        doctor: "",
+        date: "",
+        time: "",
+        reason: "",
+      });
+      onCLose();
+    }
   };
 
   const handleChange = (e) => {
@@ -157,9 +175,15 @@ const BookAppointment = () => {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="inline-flex justify-center py-2 px-4 mx-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Book Appointment
+              </button>
+              <button
+                onClick={onCLose}
+                className="inline-flex justify-center py-2 px-4 mx-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
+                Close
               </button>
             </div>
           </form>
