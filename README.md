@@ -50,7 +50,7 @@ npm install
 npm run dev
 ```
 
-##Technologies Used
+##Technology Stack
 
 - Frontend: React.js
 - Backend: Node.js, Express.js
