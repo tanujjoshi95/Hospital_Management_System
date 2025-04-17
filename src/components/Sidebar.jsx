@@ -49,20 +49,20 @@ const Sidebar = ({ isOpen }) => {
           />
           <NavItem
             Icon={BsCalendarCheck}
-            text="Reservations"
-            link={"dashboard"}
+            text="Appointments"
+            link={"appointments-list"}
             isOpen={isOpen}
           />
           <NavItem
             Icon={FaUsers}
             text="Patients"
-            link={"dashboard"}
+            link={"patient-list"}
             isOpen={isOpen}
           />
           <NavItem
             Icon={BsFillFileEarmarkMedicalFill}
             text="Treatments"
-            link={"dashboard"}
+            link={"medical-records"}
             isOpen={isOpen}
           />
           <NavItem
@@ -73,7 +73,7 @@ const Sidebar = ({ isOpen }) => {
           />
         </nav>
       </div>
-      <Link to={"/home"}>Logout</Link>
+      <Link to={"/user/home"}>Logout</Link>
     </div>
   );
 };
