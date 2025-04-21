@@ -1,5 +1,5 @@
-import React from 'react';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import "react";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -23,17 +23,33 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="hover:text-blue-400">About Us</a></li>
-              <li><a href="#" className="hover:text-blue-400">Services</a></li>
-              <li><a href="#" className="hover:text-blue-400">Doctors</a></li>
-              <li><a href="#" className="hover:text-blue-400">Emergency</a></li>
+              <li>
+                <a href="#" className="hover:text-blue-400">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-blue-400">
+                  Services
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-blue-400">
+                  Doctors
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-blue-400">
+                  Emergency
+                </a>
+              </li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold mb-4">Working Hours</h3>
             <ul className="space-y-2">
@@ -43,7 +59,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        
+
         <div className="mt-8 pt-8 border-t border-gray-700 text-center">
           <p>&copy; 2024 HealthCare. All rights reserved.</p>
         </div>

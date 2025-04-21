@@ -2,7 +2,7 @@
 import "react";
 
 import PropTypes from "prop-types";
-import { calculateAge } from "../../../utility/calculateAge";
+import { calculateAge } from "../../utils/calculateAge";
 
 const ProfilePicture = ({ object }) => {
   return (

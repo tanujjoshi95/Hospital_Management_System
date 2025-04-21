@@ -4,12 +4,17 @@ import { FaMoon } from "react-icons/fa";
 import { IoSunny } from "react-icons/io5";
 import { IoSettings } from "react-icons/io5";
 import { MdHelpOutline } from "react-icons/md";
-import { useTheme } from "../contexts/ThemeContext";
-import { TiFlag } from "react-icons/ti";
+import { useTheme } from "../../contexts/ThemeContext";
+// import { TiFlag } from "react-icons/ti";
 import { Link } from "react-router-dom";
+import { useUserContext } from "../../contexts/UserContext";
+// import { getStaffDetails, getPatientDetails } from "../../data/server";
+// import { useEffect, useState } from "react";
 
 const Navbar = ({ isOpen, setIsOpen, pagevalue }) => {
   const { theme, handleSwitchTheme } = useTheme();
+  const { user } = useUserContext();
+  // const [userData, setUserData] = useState(null);
 
   return (
     <nav
@@ -26,12 +31,12 @@ const Navbar = ({ isOpen, setIsOpen, pagevalue }) => {
             <span className="text-xl font-bold">Terminal Hospital</span>
           )}
         </Link>
-        <button
+        {/* <button
           onClick={() => setIsOpen((data) => !data)}
           className="text-gray-500 p-2"
         >
           {isOpen ? "◀" : "▶"}
-        </button>
+        </button> */}
         <span className="ml-4 text-gray-500 dark:text-gray-200">
           {pagevalue}
         </span>
@@ -64,19 +69,23 @@ const Navbar = ({ isOpen, setIsOpen, pagevalue }) => {
             <FaMoon color="white" />
           )}
         </span>
-        <div className="flex items-center">
+        {/* <div className="flex items-center">
           <span>
             <TiFlag color="green" fontSize={"1.5rem"} />
           </span>{" "}
           <span>1/4</span>
-        </div>
+        </div> */}
         <Link to={"profile"} className="flex items-center cursor-pointer">
           <img
-            src="/images/doctor.png"
+            src={`/images/${user.role}.png`}
             alt="Profile"
             className="h-8 w-8 rounded-full mr-2"
           />
-          <span>Dr. Gagan Sharma</span>
+          <span>
+            {user.role === "staff"
+              ? `Dr. ${user.firstName} ${user.lastName}`
+              : `${user.firstName} ${user.lastName}`}
+          </span>
         </Link>
       </div>
     </nav>

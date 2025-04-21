@@ -17,6 +17,6 @@ const InfoRow = ({ label, value }) => {
 
 export default InfoRow;
 InfoRow.propTypes = {
-  label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  value: PropTypes.string,
 };

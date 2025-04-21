@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Calendar, Clock, User, Stethoscope } from "lucide-react";
-import { addAppointement } from "../../database/mockAppointement";
-
+import { bookAppointment } from "../../data/server";
 import PropTypes from "prop-types";
 
 const BookAppointment = ({ onCLose }) => {
@@ -17,37 +16,60 @@ const BookAppointment = ({ onCLose }) => {
   });
 
   const departments = [
-    "General Medicine",
     "Cardiology",
-    "Orthopedics",
-    "Pediatrics",
-    "Dermatology",
     "Neurology",
+    "Pediatrics",
+    "Orthopedics",
+    "Internal Medicine",
+    "Dermatology",
+    "Ophthalmology",
+    "Gastroenterology",
   ];
 
   const doctors = {
-    "General Medicine": ["Dr. John Smith", "Dr. Sarah Johnson"],
-    Cardiology: ["Dr. Michael Chen", "Dr. Emily Brown"],
-    Orthopedics: ["Dr. David Wilson", "Dr. Lisa Anderson"],
-    Pediatrics: ["Dr. Robert Taylor", "Dr. Maria Garcia"],
-    Dermatology: ["Dr. James Lee", "Dr. Anna White"],
-    Neurology: ["Dr. William Davis", "Dr. Rachel Miller"],
+    Cardiology: [
+      { id: "STF001", name: "Dr. John Smith" },
+      { id: "STF007", name: "Dr. Michael Chen" },
+    ],
+    Neurology: [{ id: "STF007", name: "Dr. Michael Chen" }],
+    Pediatrics: [{ id: "STF002", name: "Dr. Priya Kumar" }],
+    Orthopedics: [{ id: "STF009", name: "Dr. Robert Williams" }],
+    "Internal Medicine": [{ id: "STF001", name: "Dr. John Smith" }],
+    Dermatology: [{ id: "STF002", name: "Dr. Priya Kumar" }],
+    Ophthalmology: [{ id: "STF009", name: "Dr. Robert Williams" }],
+    Gastroenterology: [{ id: "STF001", name: "Dr. John Smith" }],
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Appointment booking:", formData);
-    const result = await addAppointement(formData);
-    if (result) {
-      alert("Appointment booked successfully!");
-      setFormData({
-        department: "",
-        doctor: "",
-        date: "",
-        time: "",
-        reason: "",
+    try {
+      const result = await bookAppointment({
+        patientID: "PAT123456", // This should be the logged-in patient's ID in a real app
+        doctorID: formData.doctor, // Now this is the actual doctor ID
+        appointmentDate: formData.date,
+        appointmentTime: formData.time,
+        duration: 30, // Default duration in minutes
+        status: "Scheduled",
+        type: formData.department + " Consultation",
+        notes: formData.reason,
+        department: formData.department,
       });
-      onCLose();
+
+      if (result.success) {
+        alert("Appointment booked successfully!");
+        setFormData({
+          department: "",
+          doctor: "",
+          date: "",
+          time: "",
+          reason: "",
+        });
+        onCLose();
+      }
+    } catch (error) {
+      console.error("Error booking appointment:", error);
+      alert("Failed to book appointment. Please try again.");
     }
   };
 
@@ -113,8 +135,8 @@ const BookAppointment = ({ onCLose }) => {
                 <option value="">Select Doctor</option>
                 {formData.department &&
                   doctors[formData.department].map((doc) => (
-                    <option key={doc} value={doc}>
-                      {doc}
+                    <option key={doc.id} value={doc.id}>
+                      {doc.name} - {formData.department} Specialist
                     </option>
                   ))}
               </select>
